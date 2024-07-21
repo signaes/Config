@@ -1,10 +1,10 @@
 return {
   "akinsho/toggleterm.nvim",
-  lazy = true,
+  lazy = false,
   config = function()
     require("toggleterm").setup({
       size = 20,
-      open_mapping = [[<c-\>]],
+      open_mapping = [[<Leader>r]],
       hide_numbers = true,
       shade_terminals = true,
       shell = vim.o.shell,
