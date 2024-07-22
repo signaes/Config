@@ -117,7 +117,17 @@ return {
     require("lspconfig").lua_ls.setup({})
     require("lspconfig").gopls.setup({})
     require("lspconfig").ruff_lsp.setup({})
-    require("lspconfig").pyright.setup({})
+    require("lspconfig").pyright.setup({
+      settings = {
+        python = {
+          analysis = {
+            autoSearchPaths = true,
+            diagnosticMode = "openFilesOnly",
+            useLibraryCodeForTypes = true
+          }
+        }
+      }
+    })
     require("lspconfig").ruby_lsp.setup({})
     require("lspconfig").tsserver.setup({})
     require("lspconfig").html.setup({})
