@@ -16,3 +16,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 echo "Installing Rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
+
+brew install cmake
+brew install wget
+brew tap mesca/luarocks
+brew install luarocks
