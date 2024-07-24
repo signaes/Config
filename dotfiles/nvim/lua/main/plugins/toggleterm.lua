@@ -4,7 +4,7 @@ return {
   config = function()
     require("toggleterm").setup({
       size = 20,
-      open_mapping = [[<Leader>r]],
+      open_mapping = [[<Leader>.]],
       hide_numbers = true,
       shade_terminals = true,
       shell = vim.o.shell,
