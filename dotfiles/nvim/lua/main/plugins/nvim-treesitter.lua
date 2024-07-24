@@ -24,12 +24,12 @@ return {
         "gomod",
         "gowork",
         "gosum",
-      }, -- one of "all" or a list of languages
+      },                                    -- one of "all" or a list of languages
       auto_install = true,
       ignore_install = { "php", "phpdoc" }, -- List of parsers to ignore installing
       highlight = {
-        enable = true, -- false will disable the whole extension
-        disable = { "css" }, -- list of language that will be disabled
+        enable = true,                      -- false will disable the whole extension
+        disable = { "css" },                -- list of language that will be disabled
         additional_vim_regex_highlighting = { "ruby" },
       },
       autopairs = {
