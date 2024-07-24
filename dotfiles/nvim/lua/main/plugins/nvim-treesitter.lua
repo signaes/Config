@@ -30,7 +30,7 @@ return {
       highlight = {
         enable = true,                      -- false will disable the whole extension
         disable = { "css" },                -- list of language that will be disabled
-        additional_vim_regex_highlighting = { "ruby" },
+        additional_vim_regex_highlighting = false,
       },
       autopairs = {
         enable = true,
