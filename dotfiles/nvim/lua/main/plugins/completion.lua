@@ -3,7 +3,6 @@ return { -- Autocompletion
   event = "InsertEnter",
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
-    "ray-x/cmp-treesitter",
     "hrsh7th/cmp-nvim-lsp-signature-help",
     {
       "L3MON4D3/LuaSnip",
@@ -119,7 +118,6 @@ return { -- Autocompletion
         },
         { name = "nvim_lsp" },
         { name = "luasnip" },
-        { name = 'treesitter' },
         { name = 'nvim_lsp_signature_help' },
         { name = "path" },
         { name = 'buffer' },
