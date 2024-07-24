@@ -10,16 +10,16 @@ local keymap = vim.api.nvim_set_keymap
 -- --   command_mode = "c",
 
 local function map(mode, b, c)
-	keymap(mode, b, c, options)
+  keymap(mode, b, c, options)
 end
 local function n(b, c)
-	map("n", b, c)
+  map("n", b, c)
 end
 local function i(b, c)
-	map("i", b, c)
+  map("i", b, c)
 end
 local function v(b, c)
-	map("v", b, c)
+  map("v", b, c)
 end
 
 map("", "<Space>", "<Nop>")
@@ -69,9 +69,6 @@ n("<C-w>", "<Esc>:w<Esc><cr>k")
 -- Telescope
 n("<Leader>f", "<CMD>lua require('telescope.builtin').find_files()<CR>")
 n("<Leader>g", "<CMD>Telescope live_grep<CR>")
-
--- Gitsigns
-n("<Leader>b", "<CMD>lua require('gitsigns').toggle_current_line_blame()<CR>")
 
 -- Nvimtree
 n("<Leader>\\", ":NvimTreeToggle<CR>")
