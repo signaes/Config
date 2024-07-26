@@ -21,3 +21,4 @@ brew install cmake
 brew install wget
 brew tap mesca/luarocks
 brew install luarocks
+brew install lazygit
