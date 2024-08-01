@@ -22,3 +22,7 @@ brew install wget
 brew tap mesca/luarocks
 brew install luarocks
 brew install lazygit
+
+echo "Installing Zellij"
+
+cargo install --locked zellij

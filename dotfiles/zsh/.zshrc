@@ -91,3 +91,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 export EDITOR="nvim"
+
+# Zellij
+export ZELLIJ_CONFIG_DIR="~/Config/dotfiles/zellij/config.kdl"
