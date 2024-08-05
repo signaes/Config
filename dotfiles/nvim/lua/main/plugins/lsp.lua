@@ -89,8 +89,19 @@ local lsp_attach = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-local servers =
-	{ "lua_ls", "gopls", "pyright", "ruby_lsp", "tsserver", "html", "rust_analyzer", "bashls", "emmet-language-server" }
+local servers = {
+	"lua_ls",
+	"gopls",
+	"pyright",
+	"ruby_lsp",
+	"tsserver",
+	"html",
+	"rust_analyzer",
+	"bashls",
+	"cssls",
+	"emmet-language-server",
+	"tailwindcss",
+}
 
 return {
 	"neovim/nvim-lspconfig",
@@ -170,6 +181,36 @@ return {
 				--- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
 				variables = {},
 			},
+		})
+
+		require("lspconfig").tailwindcss.setup({
+			tailwindcss = function(_, opts)
+				local tw = require("lspconfig.server_configurations.tailwindcss")
+				opts.filetypes = opts.filetypes or {}
+
+				-- Add default filetypes
+				vim.list_extend(opts.filetypes, tw.default_config.filetypes)
+
+				-- Remove excluded filetypes
+				--- @param ft string
+				opts.filetypes = vim.tbl_filter(function(ft)
+					return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
+				end, opts.filetypes)
+
+				-- Additional settings for Phoenix projects
+				opts.settings = {
+					tailwindCSS = {
+						includeLanguages = {
+							elixir = "html-eex",
+							eelixir = "html-eex",
+							heex = "html-eex",
+						},
+					},
+				}
+
+				-- Add additional filetypes
+				vim.list_extend(opts.filetypes, opts.filetypes_include or {})
+			end,
 		})
 
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
