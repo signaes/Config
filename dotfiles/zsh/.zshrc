@@ -1,7 +1,7 @@
 # vi mode
 bindkey -v
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # case insensitive globbing
 setopt NO_CASE_GLOB
