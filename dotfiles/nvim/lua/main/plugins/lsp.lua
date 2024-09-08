@@ -94,7 +94,7 @@ local servers = {
 	"gopls",
 	"pyright",
 	"ruby_lsp",
-	"tsserver",
+	"ts_ls",
 	"html",
 	"rust_analyzer",
 	"bashls",
@@ -142,7 +142,7 @@ return {
 			},
 		})
 		require("lspconfig").ruby_lsp.setup({ capabilities = capabilities })
-		require("lspconfig").tsserver.setup({ capabilities = capabilities })
+		require("lspconfig").ts_ls.setup({ capabilities = capabilities })
 		require("lspconfig").html.setup({ capabilities = capabilities })
 		require("lspconfig").rust_analyzer.setup({ capabilities = capabilities })
 		require("lspconfig").bashls.setup({ capabilities = capabilities })
@@ -232,10 +232,6 @@ return {
 					-- This handles overriding only values explicitly passed
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for tsserver)
-
-					if server_name == "tsserver" then
-						server_name = "ts_ls"
-					end
 
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
