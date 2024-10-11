@@ -94,3 +94,6 @@ export EDITOR="nvim"
 
 # Zellij
 export ZELLIJ_CONFIG_DIR="~/Config/dotfiles/zellij/config.kdl"
+
+# Deno
+. "$HOME/.deno/env"

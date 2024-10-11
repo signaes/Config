@@ -10,7 +10,6 @@ brew install zsh-completion
   mkdir ~/.vim/backup ~/.vim/swap 2> /dev/null
 
 echo "Installing nvm"
-
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 echo "Installing Rust"
@@ -23,6 +22,8 @@ brew tap mesca/luarocks
 brew install luarocks
 brew install lazygit
 
-echo "Installing Zellij"
+echo "Installing Deno"
+curl -fsSL https://deno.land/install.sh | sh
 
+echo "Installing Zellij"
 cargo install --locked zellij

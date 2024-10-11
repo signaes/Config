@@ -95,6 +95,7 @@ local servers = {
 	"pyright",
 	"ruby_lsp",
 	"ts_ls",
+	"denols",
 	"html",
 	"rust_analyzer",
 	"bashls",
@@ -142,7 +143,16 @@ return {
 			},
 		})
 		require("lspconfig").ruby_lsp.setup({ capabilities = capabilities })
-		require("lspconfig").ts_ls.setup({ capabilities = capabilities })
+		require("lspconfig").ts_ls.setup({
+			root_dir = require("lspconfig").util.root_pattern("package.json"),
+			single_file_support = false,
+			capabilities = capabilities,
+		})
+		require("lspconfig").denols.setup({
+			-- on_attach = on_attach,
+			root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+			capabilities = capabilities,
+		})
 		require("lspconfig").html.setup({ capabilities = capabilities })
 		require("lspconfig").rust_analyzer.setup({ capabilities = capabilities })
 		require("lspconfig").bashls.setup({ capabilities = capabilities })
