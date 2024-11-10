@@ -95,7 +95,8 @@ local servers = {
   "pyright",
   "ruby_lsp",
   "ts_ls",
-  "denols",
+  -- "denols",
+  "biome",
   "html",
   "rust_analyzer",
   "bashls",
@@ -147,27 +148,28 @@ return {
       single_file_support = false,
       capabilities = capabilities,
     })
-    require("lspconfig").denols.setup({
-      on_attach = function()
-        vim.g.markdown_fenced_languages = {
-          "ts=typescript",
-        }
-      end,
-      root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
-      capabilities = capabilities,
-      settings = {
-        deno = {
-          enable = true,
-          suggest = {
-            imports = {
-              hosts = {
-                ["https://deno.land"] = true,
-              },
-            },
-          },
-        },
-      },
-    })
+    require("lspconfig").biome.setup({})
+    -- require("lspconfig").denols.setup({
+    --   on_attach = function()
+    --     vim.g.markdown_fenced_languages = {
+    --       "ts=typescript",
+    --     }
+    --   end,
+    --   root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+    --   capabilities = capabilities,
+    --   settings = {
+    --     deno = {
+    --       enable = true,
+    --       suggest = {
+    --         imports = {
+    --           hosts = {
+    --             ["https://deno.land"] = true,
+    --           },
+    --         },
+    --       },
+    --     },
+    --   },
+    -- })
     require("lspconfig").html.setup({ capabilities = capabilities })
     require("lspconfig").rust_analyzer.setup({ capabilities = capabilities })
     require("lspconfig").bashls.setup({ capabilities = capabilities })
