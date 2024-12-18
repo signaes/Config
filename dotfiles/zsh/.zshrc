@@ -56,6 +56,7 @@ alias ga="git add"
 alias gr="git rm"
 alias gc="git commit"
 alias gd="git diff"
+alias gdn="git diff --name-only"
 alias gp="git push"
 alias gl="git log"
 alias gf="git fetch"
@@ -97,3 +98,7 @@ export ZELLIJ_CONFIG_DIR="~/Config/dotfiles/zellij/config.kdl"
 
 # Deno
 . "$HOME/.deno/env"
+
+export PATH=$HOME/bin:$PATH
+
+. "$HOME/.zsh_local"
