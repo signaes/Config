@@ -4,4 +4,12 @@ adjust-font-baseline = 2
 adjust-cell-height = 40%
 adjust-cursor-thickness = 2
 cursor-color = #FFB500
+
+window-padding-balance = true
+window-padding-color = extend
+
+clipboard-read = ask
+clipboard-write = ask
+clipboard-trim-trailing-spaces = true
+
 theme = tokyonight
