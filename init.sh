@@ -3,3 +3,5 @@ echo "Installing Homebrew"
 
 (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/thiagooliveira/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+mkdir "$HOME/.config/ghostty"
