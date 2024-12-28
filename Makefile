@@ -9,3 +9,5 @@ install:
 config:
 	chmod u+x config.sh
 	sh config.sh
+
+setup: init install config
