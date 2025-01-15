@@ -51,6 +51,13 @@ return { -- Autocompletion
     luasnip.config.setup({})
 
     cmp.setup({
+      formatting = {
+        format = function(entry, vim_item)
+          vim_item.menu = entry.source.name
+
+          return vim_item
+        end,
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)

@@ -92,3 +92,7 @@ v("p", '"_dP')
 
 -- Diagnostics
 n("<Leader>d", ":lua vim.diagnostic.open_float()<CR>")
+
+-- Ollama Gen
+n("<Leader>]", ":Gen<CR>")
+v("<Leader>]", ":Gen<CR>")
