@@ -1,6 +1,7 @@
 brew update
 brew upgrade
-brew install ghostty fzf tmux tmuxinator the_silver_searcher ripgrep pyenv neovim rbenv
+brew install --cask ghostty
+brew install fzf tmux tmuxinator the_silver_searcher ripgrep pyenv neovim rbenv dua-cli bottom
 
 curl -o ~/.git-completion.zsh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
 
