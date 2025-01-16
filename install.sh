@@ -9,8 +9,13 @@ curl -o ~/.git-completion.zsh https://raw.githubusercontent.com/git/git/master/c
 
 brew install zsh-completion
 
-[[ ! -d ~/.vim/backup ]] && mkdir ~/.vim/backup
-[[ ! -d ~/.vim/swap ]] && mkdir ~/.vim/swap
+if [ ! -d ~/.vim/backup ]; then
+  mkdir ~/.vim/backup
+fi
+
+if [ ! -d ~/.vim/swap ]; then
+  mkdir ~/.vim/swap
+fi
 
 echo "Installing nvm"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
