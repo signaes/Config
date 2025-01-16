@@ -67,8 +67,8 @@ n("<S-h>", ":bprevious<CR>")
 n("<C-w>", "<Esc>:w<Esc><cr>k")
 
 -- Telescope
-n("<Leader>f", "<CMD>lua require('telescope.builtin').find_files()<CR>")
-n("<Leader>g", "<CMD>Telescope live_grep<CR>")
+n("<Leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>")
+n("<Leader>fg", "<CMD>Telescope live_grep<CR>")
 
 -- Nvimtree
 n("<Leader>\\", ":NvimTreeToggle<CR>")
