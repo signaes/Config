@@ -13,3 +13,6 @@ clipboard-write = ask
 clipboard-trim-trailing-spaces = true
 
 theme = tokyonight
+
+keybind = global:alt+shift+q=toggle_quick_terminal
+quick-terminal-position = bottom
