@@ -103,3 +103,6 @@ export ZELLIJ_CONFIG_DIR="~/Config/dotfiles/zellij/config.kdl"
 export PATH=$HOME/bin:$PATH
 
 . "$HOME/.zsh_local"
+
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
