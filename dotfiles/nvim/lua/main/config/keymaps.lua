@@ -66,10 +66,6 @@ n("<S-h>", ":bprevious<CR>")
 -- Write
 n("<C-w>", "<Esc>:w<Esc><cr>k")
 
--- Telescope
-n("<Leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>")
-n("<Leader>fg", "<CMD>Telescope live_grep<CR>")
-
 -- Nvimtree
 n("<Leader>\\", ":NvimTreeToggle<CR>")
 n("<Leader>/", ":NvimTreeFindFile<CR>")
@@ -96,3 +92,18 @@ n("<Leader>d", ":lua vim.diagnostic.open_float()<CR>")
 -- Ollama Gen
 n("<Leader>]", ":Gen<CR>")
 v("<Leader>]", ":Gen<CR>")
+
+
+-- Telescope
+n("<Leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>")
+n("<Leader>fg", "<CMD>Telescope live_grep<CR>")
+
+-- Goto preview
+n("<Leader>fpd", "<CMD>lua require('goto-preview').goto_preview_definition()<CR>")
+n("<Leader>fpt", "<CMD>lua require('goto-preview').goto_preview_type_definition()<CR>")
+n("<Leader>fpi", "<CMD>lua require('goto-preview').goto_preview_implementation()<CR>")
+n("<Leader>fpi", "<CMD>lua require('goto-preview').goto_preview_implementation()<CR>")
+n("<Leader>fps", "<CMD>lua require('goto-preview').goto_preview_declaration()<CR>")
+n("<Leader>fpr", "<CMD>lua require('goto-preview').goto_preview_references()<CR>")
+n("<Leader>fpx", "<CMD>lua require('goto-preview').close_all_win()<CR>")
+n("<Esc>", "<CMD>lua require('goto-preview').close_all_win()<CR>")
