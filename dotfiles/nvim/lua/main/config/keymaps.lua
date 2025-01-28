@@ -44,7 +44,7 @@ n("<Tab>", ":tabnext<CR>")
 n("<S-Tab>", ":tabprevious<CR>")
 
 -- Toggle the highlighting for the current search
-n("<Leader>h", ":set hlsearch! hlsearch?<CR>")
+n("<Leader>sh", ":set hlsearch! hlsearch?<CR>")
 
 -- Quit
 n("<Leader>q", "<Esc>:q<Esc><CR>")
@@ -107,3 +107,9 @@ n("<Leader>fps", "<CMD>lua require('goto-preview').goto_preview_declaration()<CR
 n("<Leader>fpr", "<CMD>lua require('goto-preview').goto_preview_references()<CR>")
 n("<Leader>fpx", "<CMD>lua require('goto-preview').close_all_win()<CR>")
 n("<Esc>", "<CMD>lua require('goto-preview').close_all_win()<CR>")
+
+-- Harpoon
+n("<leader>ha", "<CMD>lua require('harpoon.mark').add_file()<CR>")
+n("<leader>hm", "<CMD>lua require('harpoon.ui').toggle_quick_menu()<CR>")
+n("<leader>hnn", "<CMD>lua require('harpoon.ui').nav_next()<CR>")
+n("<leader>hnp", "<CMD>lua require('harpoon.ui').nav_prev()<CR>")
