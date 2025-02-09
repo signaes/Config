@@ -26,3 +26,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 echo "Installing Deno"
 curl -fsSL https://deno.land/install.sh | sh
+
+echo "Installing Bun"
+curl -fsSL https://bun.sh/install | bash
