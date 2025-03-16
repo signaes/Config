@@ -71,6 +71,7 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
+export PATH=$HOME/bin:$PATH
 
 # git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash

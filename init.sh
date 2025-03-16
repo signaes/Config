@@ -11,3 +11,5 @@ fi
 if [ ! -d $HOME/.config/ghostty ]; then
   mkdir $HOME/.config/ghostty
 fi
+
+mkdir $HOME/bin
