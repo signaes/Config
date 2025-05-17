@@ -108,6 +108,17 @@ local servers = {
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      opts = {
+        library = {
+          -- See the configuration section for more details
+          -- Load luvit types when the `vim.uv` word is found
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
+    },
     "j-hui/fidget.nvim",
     "folke/neodev.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -253,6 +264,7 @@ return {
       ensure_installed = servers,
     })
     require("mason-lspconfig").setup({
+      ensure_installed = { "lua_ls" },
       automatic_enable = false,
       handlers = {
         function(server_name)
@@ -261,8 +273,10 @@ return {
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
 
-          server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-          require("lspconfig")[server_name].setup(server)
+          if type(server) == "table" then
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            require("lspconfig")[server_name].setup(server)
+          end
         end,
       },
     })
