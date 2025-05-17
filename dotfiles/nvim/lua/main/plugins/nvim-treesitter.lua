@@ -5,6 +5,13 @@ return {
     require('nvim-treesitter.install').prefer_git = true
 
     require("nvim-treesitter.configs").setup({
+      sync_install = false,
+      auto_install = true,
+      ignore_install = { "php", "phpdoc" }, -- List of parsers to ignore installing
+      highlight = {
+        enable = true,                      -- false will disable the whole extension
+        additional_vim_regex_highlighting = false,
+      },
       ensure_installed = {
         "bash",
         "diff",
@@ -24,14 +31,7 @@ return {
         "gomod",
         "gowork",
         "gosum",
-      },                                    -- one of "all" or a list of languages
-      auto_install = true,
-      ignore_install = { "php", "phpdoc" }, -- List of parsers to ignore installing
-      highlight = {
-        enable = true,                      -- false will disable the whole extension
-        disable = { "css" },                -- list of language that will be disabled
-        additional_vim_regex_highlighting = false,
-      },
+      }, -- one of "all" or a list of languages
       autopairs = {
         enable = true,
       },
