@@ -1,7 +1,7 @@
 brew update
 brew upgrade
 brew install --cask ghostty
-brew install fzf tmux tmuxinator the_silver_searcher ripgrep pyenv neovim rbenv dua-cli bottom macmon csvlens cmake wget lazygit zsh-autosuggestions zsh-syntax-highlighting llama.cpp sqlite3 fd bat pastel
+brew install fzf tmux tmuxinator the_silver_searcher ripgrep pyenv neovim rbenv dua-cli bottom macmon csvlens cmake wget lazygit zsh-autosuggestions zsh-syntax-highlighting llama.cpp sqlite3 fd bat pastel nushell hurl
 brew tap mesca/luarocks
 brew install luarocks
 
