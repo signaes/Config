@@ -4,6 +4,7 @@ brew install --cask ghostty
 brew install fzf tmux tmuxinator the_silver_searcher ripgrep pyenv neovim rbenv dua-cli bottom macmon csvlens cmake wget lazygit zsh-autosuggestions zsh-syntax-highlighting llama.cpp sqlite3 fd bat pastel nushell hurl
 brew tap mesca/luarocks
 brew install luarocks
+brew install --cask vscodium
 
 curl -o ~/.git-completion.zsh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
 
