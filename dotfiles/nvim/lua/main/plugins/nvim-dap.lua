@@ -90,7 +90,7 @@ return {
         port = 43229,
         executable = {
           command = 'node',
-          args = { '/Users/thiagooliveira/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '43229' }
+          args = { vim.fn.resolve(vim.fn.stdpath('data') .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"), '43229' }
         },
         options = {
           detached = false
