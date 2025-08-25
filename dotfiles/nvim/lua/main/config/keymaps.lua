@@ -87,7 +87,7 @@ v("<Leader>j", ":m .+1<CR>==")
 v("p", '"_dP')
 
 -- Diagnostics
-n("<Leader>d", ":lua vim.diagnostic.open_float()<CR>")
+n("<Leader>dd", ":lua vim.diagnostic.open_float()<CR>")
 
 -- Ollama Gen
 n("<Leader>]", ":Gen<CR>")
