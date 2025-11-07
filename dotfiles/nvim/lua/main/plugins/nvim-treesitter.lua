@@ -31,6 +31,7 @@ return {
         "gomod",
         "gowork",
         "gosum",
+        "zig",
       }, -- one of "all" or a list of languages
       autopairs = {
         enable = true,

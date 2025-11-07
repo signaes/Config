@@ -107,6 +107,7 @@ local servers = {
   "cssls",
   "emmet-language-server",
   "tailwindcss",
+  "zls",
 }
 
 return {
@@ -142,11 +143,21 @@ return {
     }
   end,
 
+
   config = function()
-    require("lspconfig").lua_ls.setup({ capabilities = capabilities })
-    require("lspconfig").gopls.setup({ capabilities = capabilities })
-    require("lspconfig").ruff.setup({})
-    require("lspconfig").pyright.setup({
+    local lspconfig = vim.lsp.config
+
+    lspconfig("zls", {
+      cmd = { "zls" },
+      filetypes = { "zig", "zir" },
+      root_dir = require("lspconfig").util.root_pattern("build.zig", ".git") or vim.loop.cwd,
+      single_file_support = true,
+      capabilities = capabilities,
+    })
+    lspconfig("lua_ls", { capabilities = capabilities })
+    lspconfig("gopls", { capabilities = capabilities })
+    lspconfig("ruff", {})
+    lspconfig("pyright", {
       capabilities = capabilities,
       settings = {
         python = {
@@ -158,19 +169,19 @@ return {
         },
       },
     })
-    require("lspconfig").ruby_lsp.setup({ capabilities = capabilities })
-    require("lspconfig").ts_ls.setup({
+    lspconfig("ruby_lsp", { capabilities = capabilities })
+    lspconfig("ts_ls", {
       single_file_support = false,
       capabilities = capabilities,
     })
-    require("lspconfig").biome.setup({})
-    -- require("lspconfig").denols.setup({
+    lspconfig("biome", {})
+    -- lspconfig("denols", {
     --   on_attach = function()
     --     vim.g.markdown_fenced_languages = {
     --       "ts=typescript",
     --     }
     --   end,
-    --   root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+    --   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
     --   capabilities = capabilities,
     --   settings = {
     --     deno = {
@@ -185,10 +196,10 @@ return {
     --     },
     --   },
     -- })
-    require("lspconfig").html.setup({ capabilities = capabilities })
-    require("lspconfig").rust_analyzer.setup({ capabilities = capabilities })
-    require("lspconfig").bashls.setup({ capabilities = capabilities })
-    require("lspconfig").emmet_language_server.setup({
+    lspconfig("html", { capabilities = capabilities })
+    lspconfig("rust_analyzer", { capabilities = capabilities })
+    lspconfig("bashls", { capabilities = capabilities })
+    lspconfig("emmet_language_server", {
       filetypes = {
         "css",
         "eruby",
@@ -225,7 +236,7 @@ return {
       },
     })
 
-    require("lspconfig").tailwindcss.setup({
+    lspconfig("tailwindcss", {
       tailwindcss = function(_, opts)
         local tw = require("lspconfig.server_configurations.tailwindcss")
         opts.filetypes = opts.filetypes or {}
@@ -257,7 +268,7 @@ return {
 
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    require("lspconfig").cssls.setup({
+    lspconfig("cssls", {
       capabilities = capabilities,
     })
 
@@ -279,7 +290,7 @@ return {
 
           if type(server) == "table" then
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
+            lspconfig(server_name, server)
           end
         end,
       },
