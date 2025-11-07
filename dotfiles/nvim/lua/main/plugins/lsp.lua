@@ -145,19 +145,22 @@ return {
 
 
   config = function()
-    local lspconfig = vim.lsp.config
+    function setup(name, config)
+      vim.lsp.config(name, config)
+      vim.lsp.enable(name)
+    end
 
-    lspconfig("zls", {
+    setup("zls", {
       cmd = { "zls" },
       filetypes = { "zig", "zir" },
       root_dir = require("lspconfig").util.root_pattern("build.zig", ".git") or vim.loop.cwd,
       single_file_support = true,
       capabilities = capabilities,
     })
-    lspconfig("lua_ls", { capabilities = capabilities })
-    lspconfig("gopls", { capabilities = capabilities })
-    lspconfig("ruff", {})
-    lspconfig("pyright", {
+    setup("lua_ls", { capabilities = capabilities })
+    setup("gopls", { capabilities = capabilities })
+    setup("ruff", {})
+    setup("pyright", {
       capabilities = capabilities,
       settings = {
         python = {
@@ -169,13 +172,13 @@ return {
         },
       },
     })
-    lspconfig("ruby_lsp", { capabilities = capabilities })
-    lspconfig("ts_ls", {
+    setup("ruby_lsp", { capabilities = capabilities })
+    setup("ts_ls", {
       single_file_support = false,
       capabilities = capabilities,
     })
-    lspconfig("biome", {})
-    -- lspconfig("denols", {
+    setup("biome", {})
+    -- setup("denols", {
     --   on_attach = function()
     --     vim.g.markdown_fenced_languages = {
     --       "ts=typescript",
@@ -196,10 +199,10 @@ return {
     --     },
     --   },
     -- })
-    lspconfig("html", { capabilities = capabilities })
-    lspconfig("rust_analyzer", { capabilities = capabilities })
-    lspconfig("bashls", { capabilities = capabilities })
-    lspconfig("emmet_language_server", {
+    setup("html", { capabilities = capabilities })
+    setup("rust_analyzer", { capabilities = capabilities })
+    setup("bashls", { capabilities = capabilities })
+    setup("emmet_language_server", {
       filetypes = {
         "css",
         "eruby",
@@ -236,7 +239,7 @@ return {
       },
     })
 
-    lspconfig("tailwindcss", {
+    setup("tailwindcss", {
       tailwindcss = function(_, opts)
         local tw = require("lspconfig.server_configurations.tailwindcss")
         opts.filetypes = opts.filetypes or {}
@@ -268,7 +271,7 @@ return {
 
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    lspconfig("cssls", {
+    setup("cssls", {
       capabilities = capabilities,
     })
 
@@ -290,7 +293,7 @@ return {
 
           if type(server) == "table" then
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            lspconfig(server_name, server)
+            setup(server_name, server)
           end
         end,
       },
