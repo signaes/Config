@@ -178,27 +178,42 @@ return {
       capabilities = capabilities,
     })
     setup("biome", {})
-    -- setup("denols", {
-    --   on_attach = function()
-    --     vim.g.markdown_fenced_languages = {
-    --       "ts=typescript",
-    --     }
-    --   end,
-    --   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-    --   capabilities = capabilities,
-    --   settings = {
-    --     deno = {
-    --       enable = true,
-    --       suggest = {
-    --         imports = {
-    --           hosts = {
-    --             ["https://deno.land"] = true,
-    --           },
-    --         },
-    --       },
-    --     },
-    --   },
-    -- })
+    setup("denols", {
+      on_attach = function(client, bufnr)
+        vim.api.nvim_buf_create_user_command(bufnr, 'LspDenolsCache', function()
+          client:exec_cmd({
+            title = 'DenolsCache',
+            command = 'deno.cache',
+            arguments = { {}, vim.uri_from_bufnr(bufnr) },
+          }, { bufnr = bufnr }, function(err, _, ctx)
+            if err then
+              local uri = ctx.params.arguments[2]
+              vim.notify('cache command failed for' .. vim.uri_to_fname(uri), vim.log.levels.ERROR)
+            end
+          end)
+        end, {
+          desc = 'Cache a module and all of its dependencies.',
+        })
+      end,
+      cmd = { 'deno', 'lsp' },
+      cmd_env = { NO_COLOR = true },
+      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+      root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+      root_markers = { 'deno.json', 'deno.jsonc', '.git' },
+      capabilities = capabilities,
+      settings = {
+        deno = {
+          enable = true,
+          suggest = {
+            imports = {
+              hosts = {
+                ["https://deno.land"] = true,
+              },
+            },
+          },
+        },
+      },
+    })
     setup("html", { capabilities = capabilities })
     setup("rust_analyzer", { capabilities = capabilities })
     setup("bashls", { capabilities = capabilities })
