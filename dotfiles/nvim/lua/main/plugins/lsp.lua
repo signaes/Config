@@ -99,7 +99,7 @@ local servers = {
   "pyright",
   "ruby_lsp",
   "ts_ls",
-  -- "denols",
+  "denols",
   "biome",
   "html",
   "rust_analyzer",
@@ -179,6 +179,10 @@ return {
     })
     setup("biome", {})
     setup("denols", {
+      init_options = {
+        lint = true,
+        unstable = true,
+      },
       on_attach = function(client, bufnr)
         vim.api.nvim_buf_create_user_command(bufnr, 'LspDenolsCache', function()
           client:exec_cmd({
@@ -194,6 +198,16 @@ return {
         end, {
           desc = 'Cache a module and all of its dependencies.',
         })
+
+        if client.supports_method("textDocument/formatting") then
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("LspFormatting", {}),
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = bufnr, async = true })
+            end,
+          })
+        end
       end,
       cmd = { 'deno', 'lsp' },
       cmd_env = { NO_COLOR = true },
@@ -287,6 +301,10 @@ return {
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     setup("cssls", {
+      capabilities = capabilities,
+    })
+
+    setup("harper_ls", {
       capabilities = capabilities,
     })
 
