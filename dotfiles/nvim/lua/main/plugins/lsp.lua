@@ -108,6 +108,7 @@ local servers = {
   "emmet-language-server",
   "tailwindcss",
   "zls",
+  "astro",
 }
 
 return {
@@ -150,6 +151,9 @@ return {
       vim.lsp.enable(name)
     end
 
+    setup("astro", {
+      filetypes = { "astro" },
+    })
     setup("zls", {
       cmd = { "zls" },
       filetypes = { "zig", "zir" },
