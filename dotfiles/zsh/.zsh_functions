@@ -6,3 +6,9 @@ nllama_serve ()
 current_git_branch() {
   { git rev-parse --is-inside-work-tree &> /dev/null && echo "$(git branch --show-current)" } || {}
 }
+
+pdf2png() {
+for f in *.pdf; do
+  pdftoppm -png -r 300 "$f" "${f%.pdf}"
+done
+}
