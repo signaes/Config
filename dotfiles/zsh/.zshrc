@@ -82,8 +82,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Deno
 [ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"
 
-touch "$HOME/.zsh_local"
-
 [ -f "$HOME/.zsh_local" ] && . "$HOME/.zsh_local"
 [ -f "$HOME/.zsh_functions" ] && . "$HOME/.zsh_functions"
 
