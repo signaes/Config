@@ -81,6 +81,12 @@ install_languages_and_runtimes() {
     sqlite3 \      # Command-line interface for SQLite, a lightweight disk-based database
     llama.cpp      # Run large language models (LLMs) locally with optimized C++ inference
 
+  eval "$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null || true
+
+  if command -v mise &>/dev/null; then
+    eval "$(mise activate zsh)"
+  fi
+
   mise use --global node@lts
   mise use --global ruby@$(mise latest ruby)
   mise use --global python@$(mise latest python)

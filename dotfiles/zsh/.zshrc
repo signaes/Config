@@ -31,8 +31,9 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 
 setopt CORRECT
-setopt CORRECT_ALL
 
+HISTSIZE=10000
+SAVEHIST=10000
 PROMPT='%F{246}%1~%f %(?.%F{green}●%f.%F{red}● [%?]%f) %(!.#.)'
 
 # git info in right prompt
@@ -66,8 +67,14 @@ alias gcm="git commit -m"
 
 # git completion
 zstyle ':completion:*:*:git:*' script $HOME/.zsh/git-completion.zsh
-fpath=(~/.zsh $fpath)
-autoload -Uz compinit && compinit
+fpath=($HOME/.zsh $fpath)
+autoload -Uz compinit
+# Only check for new completions once per day (dramatically faster startup
+if [[ -n $HOME/.zcompdump(#qN.m+1) ]]; then
+    compinit
+else
+    compinit -C
+fi
 
 export EDITOR="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -77,13 +84,23 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 touch "$HOME/.zsh_local"
 
-. "$HOME/.zsh_local"
-. "$HOME/.zsh_functions"
+[ -f "$HOME/.zsh_local" ] && . "$HOME/.zsh_local"
+[ -f "$HOME/.zsh_functions" ] && . "$HOME/.zsh_functions"
 
-source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if command -v brew &>/dev/null; then
+  source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+# mise
+if command -v mise &>/dev/null; then
+    eval "$(mise activate zsh)"
+fi
 
 # PATH
+
+typeset -U path
+
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
@@ -91,3 +108,4 @@ export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 export PATH="$HOME/.local/share/mise/shims:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
