@@ -1,13 +1,10 @@
 init:
-	chmod u+x init.sh
-	sh init.sh
+	bash init.sh
 
 install:
-	chmod u+x install.sh
-	sh install.sh
+	bash install.sh
 
 config:
-	chmod u+x config.sh
-	sh config.sh
+	bash config.sh
 
 setup: init install config
