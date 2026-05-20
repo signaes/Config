@@ -64,57 +64,30 @@ alias glo="git log --oneline"
 alias gca="git commit --amend"
 alias gcm="git commit -m"
 
-# env
-export PATH=$HOME/Library/Java/JavaVirtualMachines:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/.rbenv/bin:$PATH
-export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
-export PATH=$HOME/bin:$PATH
-
 # git completion
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+zstyle ':completion:*:*:git:*' script $HOME/.zsh/git-completion.zsh
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# rbenv
-eval "$(rbenv init -)"
-
-# pyenv
-export PATH=$(pyenv root)/shims:$PATH
-export PATH=${HOME}/.local/bin:$PATH
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 export EDITOR="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# Zellij
-export ZELLIJ_CONFIG_DIR="~/Config/dotfiles/zellij/config.kdl"
-
 # Deno
-. "$HOME/.deno/env"
-
-export PATH=$HOME/bin:$PATH
+[ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"
 
 touch "$HOME/.zsh_local"
 
 . "$HOME/.zsh_local"
 . "$HOME/.zsh_functions"
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# bun completions
-[ -s "/Users/thiagooliveira/.bun/_bun" ] && source "/Users/thiagooliveira/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+export PATH="$HOME/bin:$PATH"
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+export PATH="$HOME/.local/share/mise/shims:$PATH"
