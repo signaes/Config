@@ -107,14 +107,6 @@ local lsp_attach = {
         callback = vim.lsp.buf.clear_references,
       })
 
-      -- Clean up autocommands when LSP detaches
-      vim.api.nvim_create_autocmd("LspDetach", {
-        group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
-        callback = function(event2)
-          vim.lsp.buf.clear_references()
-          vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
-        end,
-      })
     end
 
     -- Inlay hints setup
@@ -169,8 +161,6 @@ vim.api.nvim_create_user_command("LspStatus", function()
     print("Server: " .. client.name)
     print("  Root: " .. (client.root_dir or "unknown"))
     print("  Capabilities: " .. table.concat(vim.tbl_keys(client.server_capabilities or {}), ", "))
-    print("  Supports diagnostics: " ..
-      tostring(client:supports_method(vim.lsp.protocol.Methods.textDocument_diagnostic)))
     print("  Supports completion: " .. tostring(client:supports_method(vim.lsp.protocol.Methods.textDocument_completion)))
     print("---")
   end
@@ -367,12 +357,22 @@ return {
       }
     })
 
-    for _, server in ipairs(servers) do
+    for _, server in vim.iter(vim.tbl_keys(servers)) do
       vim.lsp.enable(server)
     end
 
     -- Set up the LSP attach autocommand
     vim.api.nvim_create_autocmd("LspAttach", lsp_attach)
+
+    -- Clean up autocommands when LSP detaches
+    vim.api.nvim_create_autocmd("LspDetach", {
+      group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+
+      callback = function(event2)
+        vim.lsp.buf.clear_references()
+        vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+      end,
+    })
 
     -- Initialize Mason and install language servers
     require("mason").setup()
