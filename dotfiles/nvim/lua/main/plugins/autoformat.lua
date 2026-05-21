@@ -36,6 +36,7 @@ return {
       rust = { "rustfmt" },
       zig = { "zigfmt" },
       ruby = { "rufo", "standardrb", "rubocop" },
+      astro = { "prettier" },
     },
   },
 }
