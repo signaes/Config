@@ -2,7 +2,7 @@
 -- Deno projects should use denols, while Node.js projects should use ts_ls
 -- When one server starts, it stops the other to avoid conflicts
 local function prevent_conflicting_servers(client)
-  if client.name == "denols" then
+  if client and client.name == "denols" then
     -- Stop ts_ls if running
     for _, active_client in ipairs(vim.lsp.get_clients()) do
       if active_client.name == "ts_ls" then
@@ -10,7 +10,7 @@ local function prevent_conflicting_servers(client)
         vim.notify("Stopped ts_ls in favor of denols", vim.log.levels.INFO)
       end
     end
-  elseif client.name == "ts_ls" then -- Fixed: = → ==
+  elseif client and client.name == "ts_ls" then -- Fixed: = → ==
     -- Stop denols if it's running
     for _, active_client in ipairs(vim.lsp.get_clients()) do
       if active_client.name == "denols" then

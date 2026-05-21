@@ -27,12 +27,8 @@ return { -- Autocompletion
             require("luasnip.loaders.from_vscode").lazy_load()
           end,
         },
-        "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-nvim-lsp",
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
       },
     },
     "saadparwaiz1/cmp_luasnip",
