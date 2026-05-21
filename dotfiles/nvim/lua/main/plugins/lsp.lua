@@ -185,22 +185,22 @@ capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp"
 -- List of language servers to automatically install via Mason
 -- These servers will be installed and configured automatically
 local servers = {
-  "lua_ls",                -- Lua language server
-  "gopls",                 -- Go language server
-  "pyright",               -- Python language server
-  "ruby_lsp",              -- Ruby language server
-  "ts_ls",                 -- TypeScript/JavaScript language server
-  "denols",                -- Deno language server (for Deno projects)
-  "html",                  -- HTML language server
-  "rust_analyzer",         -- Rust language server
-  "bashls",                -- Bash/Shell language server
-  "cssls",                 -- CSS language server
-  "emmet_language_server", -- Emmet for HTML/CSS abbreviations
-  "tailwindcss",           -- Tailwind CSS language server
-  "zls",                   -- Zig language server
-  "astro",                 -- Astro framework language server
-  "harper_ls",             -- English grammar
-  "ruff",                  -- Python linter
+  ["lua_ls"]                = "lua-language-server",
+  ["gopls"]                 = "gopls",
+  ["pyright"]               = "pyright",
+  ["ruby_lsp"]              = "ruby-lsp",
+  ["ts_ls"]                 = "typescript-language-server",
+  ["denols"]                = "deno",
+  ["html"]                  = "html-lsp",
+  ["rust_analyzer"]         = "rust-analyzer",
+  ["bashls"]                = "bash-language-server",
+  ["cssls"]                 = "css-lsp",
+  ["emmet_language_server"] = "emmet-language-server",
+  ["tailwindcss"]           = "tailwindcss-language-server",
+  ["zls"]                   = "zls",
+  ["astro"]                 = "astro-language-server",
+  ["harper_ls"]             = "harper-ls",
+  ["ruff"]                  = "ruff",
 }
 
 -- Main LSP plugin configuration
@@ -380,10 +380,7 @@ return {
     -- Initialize Mason and install language servers
     require("mason").setup()
     require("mason-tool-installer").setup({
-      ensure_installed = servers,
-    })
-    require("mason-lspconfig").setup({
-      ensure_installed = servers,
+      ensure_installed = vim.tbl_values(servers),
     })
   end,
 }

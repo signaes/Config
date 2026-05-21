@@ -3,6 +3,10 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons"
   },
+  keys = {
+    { "<leader>\\", "<cmd>NvimTreeToggle<cr>" },
+    { "<leader>/",  "<cmd>NvimTreeFindFile<cr>" },
+  },
   config = function()
     require("nvim-tree").setup {
       auto_reload_on_write = true,
@@ -37,10 +41,6 @@ return {
         ignore = true,
         show_on_dirs = true,
         timeout = 400,
-      },
-      keys = {
-        { "<leader>\\", "<cmd>NvimTreeToggle<cr>" },
-        { "<leader>/",  "<cmd>NvimTreeFindFile<cr>" },
       },
     }
   end
