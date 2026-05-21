@@ -1,4 +1,4 @@
-return { 
+return {
   "akinsho/bufferline.nvim",
-  requires = "nvim-tree/nvim-web-devicons" 
+  dependencies = { "nvim-tree/nvim-web-devicons" }
 }

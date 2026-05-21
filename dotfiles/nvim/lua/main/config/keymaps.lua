@@ -1,5 +1,13 @@
-local options = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local defaultOptions = { noremap = true, silent = true }
+
+local function merge(t1, t2)
+  local result = {}
+
+  for k, v in pairs(t1) do result[k] = v end
+  for k, v in pairs(t2) do result[k] = v end
+
+  return result
+end
 
 -- Modes
 -- --   normal_mode = "n",
@@ -9,17 +17,20 @@ local keymap = vim.api.nvim_set_keymap
 -- --   term_mode = "t",
 -- --   command_mode = "c",
 
-local function map(mode, b, c)
-  keymap(mode, b, c, options)
+local function map(mode, binding, command, options)
+  vim.keymap.set(mode, binding, command, merge(options or {}, defaultOptions))
 end
-local function n(b, c)
-  map("n", b, c)
+local function n(binding, command, options)
+  map("n", binding, command, options)
 end
-local function i(b, c)
-  map("i", b, c)
+local function i(binding, command, options)
+  map("i", binding, command, options)
 end
-local function v(b, c)
-  map("v", b, c)
+local function v(binding, command, options)
+  map("v", binding, command, options)
+end
+local function x(binding, command, options)
+  map("x", binding, command, options)
 end
 
 map("", "<Space>", "<Nop>")
@@ -64,7 +75,7 @@ n("<S-l>", ":bnext<CR>")
 n("<S-h>", ":bprevious<CR>")
 
 -- Write
-n("<C-w>", "<Esc>:w<Esc><cr>k")
+n("<C-w>", "<Esc>:w<Esc><CR>k")
 
 -- Nvimtree
 n("<Leader>\\", ":NvimTreeToggle<CR>")
@@ -89,11 +100,6 @@ v("p", '"_dP')
 -- Diagnostics
 n("<Leader>dd", ":lua vim.diagnostic.open_float()<CR>")
 
--- Ollama Gen
-n("<Leader>]", ":Gen<CR>")
-v("<Leader>]", ":Gen<CR>")
-
-
 -- Telescope
 n("<Leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>")
 n("<Leader>fg", "<CMD>Telescope live_grep<CR>")
@@ -103,18 +109,6 @@ n("<Leader>ftg", "<CMD>Telescope git_files<CR>")
 n("<Leader>fs", "<CMD>Telescope grep_string<CR>")
 n("<Leader>fo", "<CMD>Telescope oldfiles<CR>")
 
--- Goto preview
-n("<Leader>fpd", "<CMD>lua require('goto-preview').goto_preview_definition()<CR>")
-n("<Leader>fpt", "<CMD>lua require('goto-preview').goto_preview_type_definition()<CR>")
-n("<Leader>fpi", "<CMD>lua require('goto-preview').goto_preview_implementation()<CR>")
-n("<Leader>fpi", "<CMD>lua require('goto-preview').goto_preview_implementation()<CR>")
-n("<Leader>fps", "<CMD>lua require('goto-preview').goto_preview_declaration()<CR>")
-n("<Leader>fpr", "<CMD>lua require('goto-preview').goto_preview_references()<CR>")
-n("<Leader>fpx", "<CMD>lua require('goto-preview').close_all_win()<CR>")
-n("<Esc>", "<CMD>lua require('goto-preview').close_all_win()<CR>")
-
--- Harpoon
-n("<leader>ha", "<CMD>lua require('harpoon.mark').add_file()<CR>")
-n("<leader>hm", "<CMD>lua require('harpoon.ui').toggle_quick_menu()<CR>")
-n("<leader>hnn", "<CMD>lua require('harpoon.ui').nav_next()<CR>")
-n("<leader>hnp", "<CMD>lua require('harpoon.ui').nav_prev()<CR>")
+-- Replace across many occurrences
+n("<C-n>", "*``cgn")
+x("<C-n>", "y/\\V<C-r>\"<CR>``cgn")
