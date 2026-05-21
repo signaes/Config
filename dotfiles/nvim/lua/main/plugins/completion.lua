@@ -4,6 +4,8 @@ return { -- Autocompletion
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     "hrsh7th/cmp-nvim-lsp-signature-help",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-nvim-lua",
     {
       "L3MON4D3/LuaSnip",
       build = (function()
@@ -27,8 +29,6 @@ return { -- Autocompletion
             require("luasnip.loaders.from_vscode").lazy_load()
           end,
         },
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-nvim-lua",
       },
     },
     "saadparwaiz1/cmp_luasnip",

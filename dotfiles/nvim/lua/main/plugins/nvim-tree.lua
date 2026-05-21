@@ -1,7 +1,5 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  lazy = false,
-  priority = 1000,
   dependencies = {
     "nvim-tree/nvim-web-devicons"
   },
@@ -39,6 +37,10 @@ return {
         ignore = true,
         show_on_dirs = true,
         timeout = 400,
+      },
+      keys = {
+        { "<leader>\\", "<cmd>NvimTreeToggle<cr>" },
+        { "<leader>/",  "<cmd>NvimTreeFindFile<cr>" },
       },
     }
   end

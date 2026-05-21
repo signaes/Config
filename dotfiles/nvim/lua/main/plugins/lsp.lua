@@ -169,7 +169,8 @@ vim.api.nvim_create_user_command("LspStatus", function()
     print("Server: " .. client.name)
     print("  Root: " .. (client.root_dir or "unknown"))
     print("  Capabilities: " .. table.concat(vim.tbl_keys(client.server_capabilities or {}), ", "))
-    print("  Supports diagnostics: " .. tostring(client.server_capabilities ~= nil))
+    print("  Supports diagnostics: " ..
+      tostring(client:supports_method(vim.lsp.protocol.Methods.textDocument_diagnostic)))
     print("  Supports completion: " .. tostring(client:supports_method(vim.lsp.protocol.Methods.textDocument_completion)))
     print("---")
   end
@@ -220,8 +221,7 @@ return {
     },
     -- LSP progress notifications
     "j-hui/fidget.nvim",
-    -- Mason integration for LSP server management
-    "williamboman/mason-lspconfig.nvim",
+
     -- Automatic tool installation via Mason
     "WhoIsSethDaniel/mason-tool-installer.nvim",
 

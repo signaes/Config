@@ -77,10 +77,6 @@ n("<S-h>", ":bprevious<CR>")
 -- Write
 n("<C-w>", "<Esc>:w<Esc><CR>k")
 
--- Nvimtree
-n("<Leader>\\", ":NvimTreeToggle<CR>")
-n("<Leader>/", ":NvimTreeFindFile<CR>")
-
 -- Insert Mode --
 
 -- Write
