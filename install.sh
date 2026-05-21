@@ -106,6 +106,8 @@ install_languages_linting_tools_and_runtimes() {
   rustup component add rustfmt
 
   brew install shellcheck luacheck golangci-lint markdownlint-cli2 stylelint
+
+  npm i -g typescript
 }
 
 install_shell_completions() {

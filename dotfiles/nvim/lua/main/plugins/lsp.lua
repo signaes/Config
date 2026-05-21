@@ -222,6 +222,23 @@ return {
     -- Astro framework language server configuration
     vim.lsp.config('astro', {
       filetypes = { "astro" },
+      before_init = function(_, config)
+        local cwd = vim.fn.getcwd()
+        local tsdk = cwd .. "/node_modules/typescript/lib"
+        -- If no local TypeScript, fall back to global npm install
+        if vim.fn.isdirectory(tsdk) == 0 then
+          local ok, global_root = pcall(function()
+            return vim.fn.trim(vim.fn.system("npm root -g"))
+          end)
+          if ok and global_root and global_root ~= "" then
+            tsdk = global_root .. "/typescript/lib"
+          end
+        end
+        if vim.fn.isdirectory(tsdk) == 1 then
+          config.init_options = config.init_options or {}
+          config.init_options.typescript = { tsdk = tsdk }
+        end
+      end,
     })
 
     -- Zig language server configuration with custom root detection
