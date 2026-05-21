@@ -80,7 +80,7 @@ install_deno() {
   fi
 }
 
-install_languages_and_runtimes() {
+install_languages_linting_tools_and_runtimes() {
   brew install --formula \
     zig \          # Zig
     go \           # Golang
@@ -104,6 +104,8 @@ install_languages_and_runtimes() {
 
   go install golang.org/x/tools/cmd/goimports@latest
   rustup component add rustfmt
+
+  brew install shellcheck luacheck golangci-lint markdownlint-cli2 stylelint
 }
 
 install_shell_completions() {
@@ -128,7 +130,7 @@ install_shell_completions() {
 
 confirm "Install terminal and shell packages?" && install_terminal_and_shell_packages
 confirm "Install editors and their dependencies?" && install_editors_and_their_dependencies
-confirm "Install languages and runtimes?" && install_languages_and_runtimes
+confirm "Install languages, linting tools and runtimes?" && install_languages_linting_tools_and_runtimes
 confirm "Install shell completions?" && install_shell_completions
 
 echo "install.sh complete"

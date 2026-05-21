@@ -262,7 +262,16 @@ return {
     vim.lsp.config('html', { capabilities = vim.deepcopy(base_capabilities) })
 
     -- Rust language server configuration
-    vim.lsp.config('rust_analyzer', { capabilities = vim.deepcopy(base_capabilities) })
+    vim.lsp.config('rust_analyzer', {
+      capabilities = vim.deepcopy(base_capabilities),
+      settings = {
+        ["rust-analyzer"] = {
+          check = {
+            command = "clippy",
+          },
+        },
+      },
+    })
 
     -- Bash/Shell language server configuration
     vim.lsp.config('bashls', { capabilities = vim.deepcopy(base_capabilities) })
