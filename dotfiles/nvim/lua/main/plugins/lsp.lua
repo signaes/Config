@@ -25,9 +25,9 @@ end
 -- Sets up keybindings, highlights, and other LSP functionality
 local lsp_attach = {
   -- Creates an autocommand group to manage LSP-related events
-  -- "kickstart-lsp-attach" is the unique identifier for this group
+  -- "lsp-attach" is the unique identifier for this group
   -- { clear = true } ensures no duplicate autocommands if config is reloaded
-  group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+  group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -91,7 +91,7 @@ local lsp_attach = {
     --
     -- When you move your cursor, the highlights will be cleared (the second autocommand).
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-      local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+      local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 
       -- Highlight references when cursor holds
       vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -170,9 +170,8 @@ end, { desc = "Show LSP status for current buffer" })
 
 -- Set up LSP capabilities with completion support
 -- Start with default capabilities and enhance with nvim-cmp completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+local base_capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(),
+  require("cmp_nvim_lsp").default_capabilities())
 
 -- List of language servers to automatically install via Mason
 -- These servers will be installed and configured automatically
@@ -230,21 +229,21 @@ return {
       cmd = { "zls" },
       filetypes = { "zig", "zir" },
       root_markers = { "build.zig", ".git" },
-      capabilities = capabilities,
+      capabilities = vim.deepcopy(base_capabilities),
     })
 
     -- Lua language server configuration
-    vim.lsp.config('lua_ls', { capabilities = capabilities })
+    vim.lsp.config('lua_ls', { capabilities = vim.deepcopy(base_capabilities) })
 
     -- Go language server configuration
-    vim.lsp.config('gopls', { capabilities = capabilities })
+    vim.lsp.config('gopls', { capabilities = vim.deepcopy(base_capabilities) })
 
     -- Ruff (Python linter) configuration
     vim.lsp.config('ruff', {})
 
     -- Python language server configuration with custom settings
     vim.lsp.config('pyright', {
-      capabilities = capabilities,
+      capabilities = vim.deepcopy(base_capabilities),
       settings = {
         python = {
           analysis = {
@@ -257,16 +256,16 @@ return {
     })
 
     -- Ruby language server configuration
-    vim.lsp.config('ruby_lsp', { capabilities = capabilities })
+    vim.lsp.config('ruby_lsp', { capabilities = vim.deepcopy(base_capabilities) })
 
     -- HTML language server configuration
-    vim.lsp.config('html', { capabilities = capabilities })
+    vim.lsp.config('html', { capabilities = vim.deepcopy(base_capabilities) })
 
     -- Rust language server configuration
-    vim.lsp.config('rust_analyzer', { capabilities = capabilities })
+    vim.lsp.config('rust_analyzer', { capabilities = vim.deepcopy(base_capabilities) })
 
     -- Bash/Shell language server configuration
-    vim.lsp.config('bashls', { capabilities = capabilities })
+    vim.lsp.config('bashls', { capabilities = vim.deepcopy(base_capabilities) })
 
     -- Emmet language server configuration for HTML/CSS abbreviations
     vim.lsp.config('emmet_language_server', {
@@ -319,12 +318,12 @@ return {
 
     -- CSS language server configuration
     vim.lsp.config('cssls', {
-      capabilities = capabilities,
+      capabilities = vim.deepcopy(base_capabilities),
     })
 
     -- Harper language server for grammar and spell checking
     vim.lsp.config('harper_ls', {
-      capabilities = capabilities,
+      capabilities = vim.deepcopy(base_capabilities),
       settings = {
         ["harper-ls"] = {
           userDictPath = "",
@@ -368,11 +367,11 @@ return {
 
     -- Clean up autocommands when LSP detaches
     vim.api.nvim_create_autocmd("LspDetach", {
-      group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+      group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 
       callback = function(event2)
         vim.lsp.buf.clear_references()
-        vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+        vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
       end,
     })
 
