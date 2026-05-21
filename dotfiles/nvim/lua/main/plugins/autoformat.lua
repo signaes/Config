@@ -1,4 +1,4 @@
-return { -- Autoformat
+return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
@@ -27,11 +27,15 @@ return { -- Autoformat
     formatters_by_ft = {
       lua = { "stylua" },
       python = { "isort", "black" },
-      javascript = { "prettierd", "prettier", stop_after_first = true },
-      go = { "gofumpt", "goimports" },
+      javascript = { "oxfmt", "prettier", stop_after_first = true },
+      typescript = { "oxfmt", "prettier", stop_after_first = true },
+      javascriptreact = { "oxfmt", "prettier", stop_after_first = true },
+      typescriptreact = { "oxfmt", "prettier", stop_after_first = true },
+      json = { "prettier" },
+      go = { "gofmt", "goimports" },
       rust = { "rustfmt" },
       zig = { "zigfmt" },
-      ruby = { "standardrb" },
+      ruby = { "rufo", "standardrb", "rubocop" },
     },
   },
 }

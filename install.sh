@@ -20,8 +20,10 @@ install_terminal_and_shell_packages() {
   brew install --cask ghostty           # terminal
   brew install --cask docker
   brew install --formula \
+    jq \                                # JSON processor
     fzf \                               # Fast fuzzy finder for files, history, and processes
     tmux \                              # Terminal multiplexer for sessions, windows, and panes
+    ffmpeg \                            # For media files
     tmuxinator \                        # Declarative configuration and launching of tmux sessions
     the_silver_searcher \               # Fast code-searching tool (ag) that respects .gitignore
     ripgrep \                           # Extremely fast recursive line search tool (rg)
@@ -44,6 +46,7 @@ install_editors_and_their_dependencies() {
   brew tap mesca/luarocks              # Add third-party Homebrew tap for LuaRocks packages
   brew install luarocks                # Lua package manager (used for managing Neovim Lua plugins/dependencies)
   brew install --cask vscodium         # Community-driven, freely-licensed binary distribution of VS Code (no telemetry)
+  brew install --formula stylua black isort prettier oxfmt oxlint
 }
 
 install_rust() {
@@ -79,7 +82,8 @@ install_deno() {
 
 install_languages_and_runtimes() {
   brew install --formula \
-    go \           # Golang LTS
+    zig \          # Zig
+    go \           # Golang
     mise \         # Universal dev tool version manager (replaces rbenv, nvm, pyenv, …)
     cmake \        # Cross-platform build system generator (used to build C/C++ projects)
     sqlite3 \      # Command-line interface for SQLite, a lightweight disk-based database
@@ -97,6 +101,9 @@ install_languages_and_runtimes() {
 
   install_rust
   install_deno
+
+  go install golang.org/x/tools/cmd/goimports@latest
+  rustup component add rustfmt
 }
 
 install_shell_completions() {
