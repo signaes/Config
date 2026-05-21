@@ -219,9 +219,6 @@ return {
         },
       },
     },
-    -- LSP progress notifications
-    "j-hui/fidget.nvim",
-
     -- Automatic tool installation via Mason
     "WhoIsSethDaniel/mason-tool-installer.nvim",
 
