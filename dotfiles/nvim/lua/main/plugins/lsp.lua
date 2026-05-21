@@ -357,7 +357,7 @@ return {
       }
     })
 
-    for _, server in vim.iter(vim.tbl_keys(servers)) do
+    for _, server in pairs(servers) do
       vim.lsp.enable(server)
     end
 
