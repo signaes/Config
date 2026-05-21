@@ -1,5 +1,7 @@
 window-padding-x = 12
 font-size = 16
+font-family = JetBrains Mono
+font-feature = -calt
 adjust-font-baseline = 2
 adjust-cell-height = 40%
 adjust-cursor-thickness = 2
@@ -16,3 +18,5 @@ theme = tokyonight
 
 keybind = global:alt+shift+q=toggle_quick_terminal
 quick-terminal-position = bottom
+
+mouse-hide-while-typing = true

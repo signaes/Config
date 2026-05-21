@@ -1,7 +1,7 @@
 return {
   "folke/snacks.nvim",
   keys = {
-    { "<Leader>ff",  function() Snacks.picker.files() end, desc = "Find Files" },
+    { "<Leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
   },
   opts = {
     image = {
@@ -15,8 +15,8 @@ return {
         max_height = 40,
       },
     },
-    picker = { 
-      enabled = true ,
+    picker = {
+      enabled = true,
     },
     -- Explicitly disable everything else (optional but explicit)
     bigfile = { enabled = false },
@@ -53,5 +53,5 @@ return {
       end
       return orig_render(buf, render_opts)
     end
-  end  
+  end
 }
