@@ -33,6 +33,7 @@ install_terminal_and_shell_packages() {
     wget \                              # Command-line utility for downloading files from the web
     lazygit \                           # Terminal UI for Git operations
     imagemagick \                       # Images
+    opencode \                          # opencode
     ghostscript \                       # Imagemagick dependency to render PDFs
     harper                              # Grammar and style checker for Markdown and plain text
 }
