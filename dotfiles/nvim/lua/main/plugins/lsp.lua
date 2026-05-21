@@ -120,9 +120,10 @@ local lsp_attach = {
           { bufnr = event.buf }
         )
       end, "[T]oggle Inlay [H]ints")
-
-      map("<leader>dd", vim.diagnostic.open_float, "Open Diagnostic Float")
     end
+
+    -- Diagnostic float (available whenever LSP is attached
+    map("<leader>dd", vim.diagnostic.open_float, "Open Diagnostic Float")
   end,
 }
 

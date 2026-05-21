@@ -2,7 +2,6 @@ return {
   'nvim-telescope/telescope.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
   keys = {
-    { "<Leader>ff",  "<CMD>lua require('telescope.builtin').find_files()<CR>", desc = "Find Files" },
     { "<Leader>fg",  "<CMD>Telescope live_grep<CR>",                           desc = "Live Grep" },
     { "<Leader>fb",  "<CMD>Telescope buffers<CR>",                             desc = "Buffers" },
     { "<Leader>fh",  "<CMD>Telescope help_tags<CR>",                           desc = "Help Tags" },
