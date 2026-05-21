@@ -106,7 +106,6 @@ local lsp_attach = {
         group = highlight_augroup,
         callback = vim.lsp.buf.clear_references,
       })
-
     end
 
     -- Inlay hints setup
@@ -121,6 +120,8 @@ local lsp_attach = {
           { bufnr = event.buf }
         )
       end, "[T]oggle Inlay [H]ints")
+
+      map("<leader>dd", vim.diagnostic.open_float, "Open Diagnostic Float")
     end
   end,
 }
@@ -357,7 +358,7 @@ return {
       }
     })
 
-    for _, server in pairs(servers) do
+    for server, _ in pairs(servers) do
       vim.lsp.enable(server)
     end
 

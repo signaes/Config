@@ -93,18 +93,6 @@ v("<Leader>k", ":m .-2<CR>==")
 v("<Leader>j", ":m .+1<CR>==")
 v("p", '"_dP')
 
--- Diagnostics
-n("<Leader>dd", ":lua vim.diagnostic.open_float()<CR>")
-
--- Telescope
-n("<Leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>")
-n("<Leader>fg", "<CMD>Telescope live_grep<CR>")
-n("<Leader>fb", "<CMD>Telescope buffers<CR>")
-n("<Leader>fh", "<CMD>Telescope help_tags<CR>")
-n("<Leader>ftg", "<CMD>Telescope git_files<CR>")
-n("<Leader>fs", "<CMD>Telescope grep_string<CR>")
-n("<Leader>fo", "<CMD>Telescope oldfiles<CR>")
-
 -- Replace across many occurrences
 n("<C-n>", "*``cgn")
 x("<C-n>", "y/\\V<C-r>\"<CR>``cgn")
