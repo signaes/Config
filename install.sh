@@ -18,6 +18,7 @@ confirm "Update homebrew? - Updates Homebrew itself and fetches the latest packa
 
 install_terminal_and_shell_packages() {
   brew install --cask ghostty           # terminal
+  brew install --cask docker
   brew install --formula \
     fzf \                               # Fast fuzzy finder for files, history, and processes
     tmux \                              # Terminal multiplexer for sessions, windows, and panes
