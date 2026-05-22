@@ -192,6 +192,9 @@ local servers = {
   ["astro"]                 = "astro-language-server",
   ["harper_ls"]             = "harper-ls",
   ["ruff"]                  = "ruff",
+  ["jsonls"]                = "json-lsp",
+  ["yamlls"]                = "yaml-language-server",
+  ["dockerls"]              = "dockerfile-language-server",
 }
 
 -- Main LSP plugin configuration
@@ -383,6 +386,13 @@ return {
         }
       }
     })
+
+    -- JSON language server
+    vim.lsp.config('jsonls', { capabilities = vim.deepcopy(base_capabilities) })
+    -- YAML language server
+    vim.lsp.config('yamlls', { capabilities = vim.deepcopy(base_capabilities) })
+    -- Docker language server
+    vim.lsp.config('dockerls', { capabilities = vim.deepcopy(base_capabilities) })
 
     for server, _ in pairs(servers) do
       vim.lsp.enable(server)

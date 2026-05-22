@@ -20,6 +20,7 @@ install_terminal_and_shell_packages() {
   brew install --cask ghostty           # terminal
   brew install --formula \
     jq \                                # JSON processor
+    jsonlint \                          # JSON linter
     uv \                                # An extremely fast Python package and project manager
     ruff \                              # An extremely fast Python linter and code formatter
     fzf \                               # Fast fuzzy finder for files, history, and processes
@@ -40,6 +41,8 @@ install_terminal_and_shell_packages() {
     opencode \                          # opencode
     ghostscript \                       # Imagemagick dependency to render PDFs
     harper \                            # Grammar and style checker for Markdown and plain text
+    hadolint \                          # Dockerfile linting
+    vale \                              # Markdown linting
     poppler                             # Poppler is an open-source PDF rendering library (forked from xpdf) that provides command-line tools like pdftoppm, pdftotext, and pdfimages for converting and extracting content from PDF files.
 
   brew install colima docker docker-compose
