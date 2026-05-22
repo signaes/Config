@@ -39,7 +39,9 @@ install_terminal_and_shell_packages() {
     ghostscript \                       # Imagemagick dependency to render PDFs
     harper                              # Grammar and style checker for Markdown and plain text
 
-  brew install --cask docker
+  brew install colima
+  brew install docker
+  brew install docker-compose
 }
 
 install_editors_and_their_dependencies() {
