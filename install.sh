@@ -39,11 +39,16 @@ install_terminal_and_shell_packages() {
     imagemagick \                       # Images
     opencode \                          # opencode
     ghostscript \                       # Imagemagick dependency to render PDFs
-    harper                              # Grammar and style checker for Markdown and plain text
+    harper \                            # Grammar and style checker for Markdown and plain text
+    poppler                             # Poppler is an open-source PDF rendering library (forked from xpdf) that provides command-line tools like pdftoppm, pdftotext, and pdfimages for converting and extracting content from PDF files.
 
-  brew install colima
-  brew install docker
-  brew install docker-compose
+  brew install colima docker docker-compose
+  brew install ollama
+
+  ollama pull qwen2.5-coder:7b
+  ollama pull glm-4.7-flash:latest
+  ollama pull gemma4:latest
+  ollama pull qwen3-coder:latest
 }
 
 install_editors_and_their_dependencies() {
@@ -91,8 +96,7 @@ install_languages_linting_tools_and_runtimes() {
     go \           # Golang
     mise \         # Universal dev tool version manager (replaces rbenv, nvm, pyenv, …)
     cmake \        # Cross-platform build system generator (used to build C/C++ projects)
-    sqlite3 \      # Command-line interface for SQLite, a lightweight disk-based database
-    llama.cpp      # Run large language models (LLMs) locally with optimized C++ inference
+    sqlite3        # Command-line interface for SQLite, a lightweight disk-based database
 
   eval "$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null || true
 
