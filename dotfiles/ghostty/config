@@ -10,8 +10,8 @@ cursor-color = #FFB500
 window-padding-balance = true
 window-padding-color = extend
 
-clipboard-read = ask
-clipboard-write = ask
+clipboard-read = allow
+clipboard-write = allow
 clipboard-trim-trailing-spaces = true
 
 theme = tokyonight

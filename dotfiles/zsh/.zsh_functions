@@ -11,3 +11,10 @@ pdf2png() {
 my_ip() {
   ipconfig getifaddr en0 || ipconfig getifaddr en1
 }
+
+ollama_pull_models() {
+  ollama pull qwen2.5-coder:7b
+  ollama pull glm-4.7-flash:latest
+  ollama pull gemma4:latest
+  ollama pull qwen3-coder:latest
+}

@@ -43,12 +43,7 @@ install_terminal_and_shell_packages() {
     poppler                             # Poppler is an open-source PDF rendering library (forked from xpdf) that provides command-line tools like pdftoppm, pdftotext, and pdfimages for converting and extracting content from PDF files.
 
   brew install colima docker docker-compose
-  brew install ollama
-
-  ollama pull qwen2.5-coder:7b
-  ollama pull glm-4.7-flash:latest
-  ollama pull gemma4:latest
-  ollama pull qwen3-coder:latest
+  brew install --cask ollama-app
 }
 
 install_editors_and_their_dependencies() {
