@@ -26,7 +26,7 @@ return {
     end,
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "isort", "black" },
+      python = { "ruff_organize_imports", "ruff_format" },
       javascript = { "oxfmt", "prettier", stop_after_first = true },
       typescript = { "oxfmt", "prettier", stop_after_first = true },
       javascriptreact = { "prettier", stop_after_first = true },

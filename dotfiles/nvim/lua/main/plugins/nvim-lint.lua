@@ -12,6 +12,7 @@ return {
       typescript = { "oxlint" },
       javascriptreact = { "oxlint" },
       typescriptreact = { "oxlint" },
+      python = { "ruff" },
       bash = { "shellcheck" },
       sh = { "shellcheck" },
       zsh = { "shellcheck" },

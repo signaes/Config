@@ -20,6 +20,8 @@ install_terminal_and_shell_packages() {
   brew install --cask ghostty           # terminal
   brew install --formula \
     jq \                                # JSON processor
+    uv \                                # An extremely fast Python package and project manager
+    ruff \                              # An extremely fast Python linter and code formatter
     fzf \                               # Fast fuzzy finder for files, history, and processes
     tmux \                              # Terminal multiplexer for sessions, windows, and panes
     ffmpeg \                            # For media files

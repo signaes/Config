@@ -255,7 +255,7 @@ return {
     -- Go language server configuration
     vim.lsp.config('gopls', { capabilities = vim.deepcopy(base_capabilities) })
 
-    -- Ruff (Python linter) configuration
+    -- ruff (Python linter) configuration
     vim.lsp.config('ruff', {})
 
     -- Python language server configuration with custom settings
