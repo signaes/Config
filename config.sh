@@ -10,6 +10,7 @@ echo "Symlinking dotfiles"
 CONFIG_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 ln -sf "$CONFIG_DIR/dotfiles/zsh/.zshrc" "$HOME/.zshrc"
+ln -sf "$CONFIG_DIR/dotfiles/zsh/.zshenv" "$HOME/.zshenv"
 ln -sf "$CONFIG_DIR/dotfiles/zsh/.zsh_functions" "$HOME/.zsh_functions"
 ln -sf "$CONFIG_DIR/dotfiles/vim/.vimrc" "$HOME/.vimrc"
 ln -sf "$CONFIG_DIR/dotfiles/tmux/.tmux.conf" "$HOME/.tmux.conf"
