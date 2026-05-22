@@ -39,3 +39,5 @@ for k, v in pairs(options) do
 end
 
 vim.cmd([[set iskeyword+=-]])
+
+vim.env.PATH = vim.env.PATH .. ":/opt/homebrew/bin:/usr/local/bin:" .. vim.fn.expand("~/.local/share/mise/shims")

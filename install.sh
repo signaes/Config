@@ -18,7 +18,6 @@ confirm "Update homebrew? - Updates Homebrew itself and fetches the latest packa
 
 install_terminal_and_shell_packages() {
   brew install --cask ghostty           # terminal
-  brew install --cask docker
   brew install --formula \
     jq \                                # JSON processor
     fzf \                               # Fast fuzzy finder for files, history, and processes
@@ -39,6 +38,8 @@ install_terminal_and_shell_packages() {
     opencode \                          # opencode
     ghostscript \                       # Imagemagick dependency to render PDFs
     harper                              # Grammar and style checker for Markdown and plain text
+
+  brew install --cask docker
 }
 
 install_editors_and_their_dependencies() {

@@ -20,7 +20,7 @@ return {
       -- languages here or re-enable it for the disabled ones.
       local disable_filetypes = { c = true, cpp = true }
       return {
-        timeout_ms = 500,
+        timeout_ms = 3000,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
       }
     end,
@@ -29,8 +29,8 @@ return {
       python = { "isort", "black" },
       javascript = { "oxfmt", "prettier", stop_after_first = true },
       typescript = { "oxfmt", "prettier", stop_after_first = true },
-      javascriptreact = { "oxfmt", "prettier", stop_after_first = true },
-      typescriptreact = { "oxfmt", "prettier", stop_after_first = true },
+      javascriptreact = { "prettier", stop_after_first = true },
+      typescriptreact = { "prettier", stop_after_first = true },
       json = { "prettier" },
       go = { "gofmt", "goimports" },
       rust = { "rustfmt" },
