@@ -51,7 +51,7 @@ install_editors_and_their_dependencies() {
   brew tap mesca/luarocks              # Add third-party Homebrew tap for LuaRocks packages
   brew install luarocks                # Lua package manager (used for managing Neovim Lua plugins/dependencies)
   brew install --cask vscodium         # Community-driven, freely-licensed binary distribution of VS Code (no telemetry)
-  brew install --formula stylua black isort prettier oxfmt oxlint
+  brew install --formula stylua prettier oxfmt oxlint
 }
 
 install_rust() {
