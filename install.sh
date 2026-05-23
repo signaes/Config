@@ -19,7 +19,7 @@ fi
 confirm "Update homebrew? - Updates Homebrew itself and fetches the latest package metadata (formulae and casks) from the repositories. It does not upgrade any installed packages." && brew update
 
 install_terminal_and_shell_packages() {
-  brew install --cask ghostty           # terminal
+  brew install --cask ghostty
   brew install --formula \
     jq \                                # JSON processor
     jsonlint \                          # JSON linter
@@ -45,7 +45,7 @@ install_terminal_and_shell_packages() {
     harper \                            # Grammar and style checker for Markdown and plain text
     hadolint \                          # Dockerfile linting
     vale \                              # Markdown linting
-    poppler                             # Poppler is an open-source PDF rendering library (forked from xpdf) that provides command-line tools like pdftoppm, pdftotext, and pdfimages for converting and extracting content from PDF files.
+    poppler \                           # Poppler is an open-source PDF rendering library (forked from xpdf) that provides command-line tools like pdftoppm, pdftotext, and pdfimages for converting and extracting content from PDF files.
 
   brew install colima docker docker-compose
   brew install --cask ollama-app
