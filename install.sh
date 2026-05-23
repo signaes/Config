@@ -20,42 +20,19 @@ confirm "Update homebrew? - Updates Homebrew itself and fetches the latest packa
 
 install_terminal_and_shell_packages() {
   brew install --cask ghostty
-  brew install --formula \
-    jq \                                # JSON processor
-    jsonlint \                          # JSON linter
-    uv \                                # An extremely fast Python package and project manager
-    ruff \                              # An extremely fast Python linter and code formatter
-    fzf \                               # Fast fuzzy finder for files, history, and processes
-    tmux \                              # Terminal multiplexer for sessions, windows, and panes
-    ffmpeg \                            # For media files
-    tmuxinator \                        # Declarative configuration and launching of tmux sessions
-    the_silver_searcher \               # Fast code-searching tool (ag) that respects .gitignore
-    ripgrep \                           # Extremely fast recursive line search tool (rg)
-    zsh-autosuggestions \               # Suggests commands as you type based on shell history
-    zsh-syntax-highlighting \           # Syntax highlighting for commands in the Zsh shell
-    zsh-completions \                   # Additional tab-completion functions for Zsh
-    fd \                                # Fast and user-friendly alternative to find
-    bat \                               # cat clone with syntax highlighting and Git integration
-    pastel \                            # Command-line tool for generating and manipulating colors
-    wget \                              # Command-line utility for downloading files from the web
-    lazygit \                           # Terminal UI for Git operations
-    imagemagick \                       # Images
-    opencode \                          # opencode
-    ghostscript \                       # Imagemagick dependency to render PDFs
-    harper \                            # Grammar and style checker for Markdown and plain text
-    hadolint \                          # Dockerfile linting
-    vale \                              # Markdown linting
-    poppler \                           # Poppler is an open-source PDF rendering library (forked from xpdf) that provides command-line tools like pdftoppm, pdftotext, and pdfimages for converting and extracting content from PDF files.
+  brew install --formula jq jsonlint uv ruff fzf tmux ffmpeg tmuxinator the_silver_searcher ripgrep                            
+  brew install --formula zsh-autosuggestions zsh-syntax-highlighting zsh-completions
+  brew install --formula fd bat pastel wget lazygit imagemagick opencode ghostscript harper hadolint vale poppler                            
 
   brew install colima docker docker-compose
   brew install --cask ollama-app
 }
 
 install_editors_and_their_dependencies() {
-  brew install --formula neovim        # Hyperextensible Vim-based text editor focused on extensibility and usability
-  brew tap mesca/luarocks              # Add third-party Homebrew tap for LuaRocks packages
-  brew install luarocks                # Lua package manager (used for managing Neovim Lua plugins/dependencies)
-  brew install --cask vscodium         # Community-driven, freely-licensed binary distribution of VS Code (no telemetry)
+  brew install --formula neovim
+  brew tap mesca/luarocks
+  brew install luarocks
+  brew install --cask vscodium
   brew install --formula stylua prettier oxfmt oxlint
 }
 
@@ -91,12 +68,7 @@ install_deno() {
 }
 
 install_languages_linting_tools_and_runtimes() {
-  brew install --formula \
-    zig \          # Zig
-    go \           # Golang
-    mise \         # Universal dev tool version manager (replaces rbenv, nvm, pyenv, …)
-    cmake \        # Cross-platform build system generator (used to build C/C++ projects)
-    sqlite3        # Command-line interface for SQLite, a lightweight disk-based database
+  brew install --formula zig go mise cmake sqlite3
 
   eval "$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null || true
 
