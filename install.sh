@@ -14,6 +14,8 @@ if ! command -v brew &>/dev/null; then
     exit 1
 fi
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 confirm "Update homebrew? - Updates Homebrew itself and fetches the latest package metadata (formulae and casks) from the repositories. It does not upgrade any installed packages." && brew update
 
 install_terminal_and_shell_packages() {
@@ -31,7 +33,7 @@ install_terminal_and_shell_packages() {
     ripgrep \                           # Extremely fast recursive line search tool (rg)
     zsh-autosuggestions \               # Suggests commands as you type based on shell history
     zsh-syntax-highlighting \           # Syntax highlighting for commands in the Zsh shell
-    zsh-completion \                    # Additional tab-completion functions for Zsh
+    zsh-completions \                   # Additional tab-completion functions for Zsh
     fd \                                # Fast and user-friendly alternative to find
     bat \                               # cat clone with syntax highlighting and Git integration
     pastel \                            # Command-line tool for generating and manipulating colors
