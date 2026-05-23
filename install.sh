@@ -6,6 +6,8 @@ source ./functions.sh
 
 echo "install.sh starting"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # -----------------------------------------------------------------------------
 # Homebrew setup
 # -----------------------------------------------------------------------------
@@ -13,8 +15,6 @@ if ! command -v brew &>/dev/null; then
     echo "ERROR: Homebrew is not installed. Run make init first."
     exit 1
 fi
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 confirm "Update homebrew? - Updates Homebrew itself and fetches the latest package metadata (formulae and casks) from the repositories. It does not upgrade any installed packages." && brew update
 
