@@ -16,7 +16,7 @@ ln -sf "$CONFIG_DIR/dotfiles/vim/.vimrc" "$HOME/.vimrc"
 ln -sf "$CONFIG_DIR/dotfiles/tmux/.tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$CONFIG_DIR/dotfiles/ghostty/config" "$HOME/.config/ghostty/config"
 
-if [ -d $HOME/.config/nvim ]; then
+if [ -d "$HOME/.config/nvim" ]; then
   echo "Removing previous neovim config"
 
   rm -r "$HOME/.config/nvim"
@@ -25,14 +25,17 @@ fi
 echo "Copying new neovim config"
 cp -R "$CONFIG_DIR/dotfiles/nvim" "$HOME/.config/nvim"
 
-if [ -d $HOME/.config/opencode/skills ]; then
-  echo "Removing previous opencode skills"
+echo "Syncing opencode skills"
+mkdir -p "$HOME/.config/opencode/skills"
 
-  rm -r "$HOME/.config/opencode/skills"
-fi
-
-echo "Copying new opencode skills"
-mkdir -p "$HOME/.config/opencode"
-cp -R "$CONFIG_DIR/dotfiles/opencode/skills" "$HOME/.config/opencode/skills"
+for skill_dir in "$CONFIG_DIR/dotfiles/opencode/skills"/*; do
+    if [ -d "$skill_dir" ]; then
+        skill_name=$(basename "$skill_dir")
+        dest="$HOME/.config/opencode/skills/$skill_name"
+        rm -rf "$dest"
+        cp -R "$skill_dir" "$dest"
+        echo "  Installed '$skill_name' skill"
+    fi
+done
 
 echo "config.sh complete"
