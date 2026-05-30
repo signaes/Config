@@ -33,6 +33,7 @@ make_directories() {
   mkdir -p "$HOME/bin"
   mkdir -p "$HOME/.vim/backup"
   mkdir -p "$HOME/.vim/swap"
+  mkdir -p "$HOME/.local/share"
 }
 
 confirm "Install and setup homebrew?" && install_and_setup_homebrew
