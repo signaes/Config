@@ -89,6 +89,8 @@ install_languages_linting_tools_and_runtimes() {
   brew install shellcheck luacheck golangci-lint markdownlint-cli2 stylelint
 
   npm i -g typescript
+
+  cargo install fallow-cli
 }
 
 install_shell_completions() {
