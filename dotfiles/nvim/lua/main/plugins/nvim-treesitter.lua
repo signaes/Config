@@ -1,44 +1,39 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  build = ':TSUpdate',
+  branch = "main",
   dependencies = { "HiPhish/rainbow-delimiters.nvim" },
   config = function()
-    require('nvim-treesitter.install').prefer_git = true
+    require("nvim-treesitter").setup({
+      install_dir = vim.fn.stdpath("data") .. "/site",
+    })
 
-    require("nvim-treesitter.configs").setup({
-      modules = {},
-      sync_install = false,
-      auto_install = true,
-      ignore_install = { "php", "phpdoc" }, -- List of parsers to ignore installing
-      highlight = {
-        enable = true,                      -- false will disable the whole extension
-        additional_vim_regex_highlighting = false,
+    local parsers = {
+      "bash", "diff", "html", "markdown", "markdown_inline", "vim",
+      "lua", "python", "ruby", "typescript", "javascript", "json",
+      "scss", "rust", "go", "gomod", "gowork", "gosum", "zig",
+    }
+
+    require("nvim-treesitter").install(parsers)
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = {
+        "bash", "diff", "html", "markdown", "vim", "lua", "python",
+        "ruby", "typescript", "javascript", "javascriptreact",
+        "typescriptreact", "json", "scss", "rust", "go", "zig",
       },
-      ensure_installed = {
-        "bash",
-        "diff",
-        "html",
-        "markdown",
-        "markdown_inline",
-        "vim",
-        "lua",
-        "python",
-        "ruby",
-        "typescript",
-        "javascript",
-        "json",
-        "scss",
-        "rust",
-        "go",
-        "gomod",
-        "gowork",
-        "gosum",
-        "zig",
-      }, -- one of "all" or a list of languages
-      autopairs = {
-        enable = true,
-      },
-      indent = { enable = true, disable = { "python", "css", "ruby" } },
+      callback = function()
+        pcall(vim.treesitter.start)
+      end,
+    })
+
+    local indent_disable = { python = true, css = true, ruby = true }
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = parsers,
+      callback = function()
+        if not indent_disable[vim.bo.filetype] then
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end,
     })
   end
 }

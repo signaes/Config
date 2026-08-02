@@ -35,23 +35,5 @@ return {
   },
   config = function(_, opts)
     require("snacks").setup(opts)
-    -- Prevent treesitter + snacks.image crashes on picker markdown previews
-    local markdown = require("snacks.picker.util.markdown")
-    local orig_render = markdown.render
-
-    markdown.render = function(buf, render_opts)
-      -- Preview scratch buffers are left with filetype="snacks_picker_preview" before render()
-      if vim.bo[buf].filetype == "snacks_picker_preview" then
-        -- Suppress FileType to avoid any ftplugin re-triggering treesitter
-        local ei = vim.o.eventignore
-        vim.o.eventignore = "all"
-        vim.bo[buf].filetype = "markdown.snacks_picker_preview"
-        vim.o.eventignore = ei
-        -- Use regex syntax instead of treesitter for the preview
-        vim.bo[buf].syntax = "markdown"
-        return
-      end
-      return orig_render(buf, render_opts)
-    end
-  end
+  end,
 }

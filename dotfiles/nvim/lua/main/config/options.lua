@@ -5,7 +5,7 @@ local options = {
   numberwidth = 4,
   autoread = true,  -- automatically update a file if it is changed externally
   cmdheight = 1,    -- more space in the neovim command line for displaying messages
-  conceallevel = 0, -- so that `` is visible in markdown files
+  conceallevel = 2, -- treesitter-conceal enabled by default; overridden per-filetype below
   autoindent = true,
   smartindent = true,
   textwidth = 80,
@@ -39,5 +39,14 @@ for k, v in pairs(options) do
 end
 
 vim.cmd([[set iskeyword+=-]])
+
+-- Keep markdown source markers visible (e.g. `` for inline code)
+-- while letting treesitter conceal them in every other filetype.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "markdown.snacks_picker_preview" },
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
 
 vim.env.PATH = vim.env.PATH .. ":/opt/homebrew/bin:/usr/local/bin:" .. vim.fn.expand("~/.local/share/mise/shims")
